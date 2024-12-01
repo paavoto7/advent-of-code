@@ -2,25 +2,18 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
-#include <cmath>
+#include <map>
 #include "../utils/helper.h"
 using namespace std;
 
 int part1(vector<int> left, vector<int> right) {
 
+    sort(left.begin(), left.end());
+    sort(right.begin(), right.end());
+    
     int sum = 0;
-    int size = left.size();
-
-    for (int i = 0; i < size; ++i) {
-        // Get the minimums using a standard function
-        auto leftMin = *min_element(left.begin(), left.end());
-        auto rightMin = *min_element(right.begin(), right.end());
-
-        // Remove them from the vectors to be able do the above again
-        left.erase(find(left.begin(), left.end(), leftMin));
-        right.erase(find(right.begin(), right.end(), rightMin));
-
-        sum += abs(leftMin - rightMin);
+    for (int i = 0; i < left.size(); ++i) {
+        sum += abs(left[i] - right[i]);
     }
 
     return sum;
@@ -28,28 +21,34 @@ int part1(vector<int> left, vector<int> right) {
 }
 
 int part2(vector<int> left, vector<int> right) {
+    /* Adds all numbers of right to map.
+    Multiplies the left values by the amount of
+    them in the map.
 
-    int size = left.size();
-    vector<int> amounts(size, 0);
+    I looked at my first solutions time complexity
+    and figured there has to be a better way...
+    */
 
-    // Loop over both lists to count the amounts
-    for (int i = 0; i < size; ++i) {
-        for (int num: right) {
-            if (left[i] == num) {
-                amounts[i]++;
-            }
-        }
+    map<int, int> right_amounts;
+
+    // Add the right values into map
+    for (int r_value: right) {
+       right_amounts[r_value]++;
     }
 
-    return dotProduct(left, amounts);
+    int sum = 0;
+    for (int l_value: left) {
+        sum += l_value * right_amounts[l_value];
+    }
+
+    return sum;
 
 }
 
 int main() {
 
     vector<string> lines = getStringInput("../../inputs/day1.txt");
-    vector<int> left;
-    vector<int> right;
+    vector<int> left, right;
 
     // Break the lines to two lists
     for (string line: lines) {
