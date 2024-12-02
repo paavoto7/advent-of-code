@@ -47,8 +47,7 @@ int part2(vector<int> left, vector<int> right) {
 
 int main(int argc, char *argv[]) {
 
-    string filepath = "../../inputs/day1.txt";
-    filepath = argc == 2 ? argv[1] : "./inputs/test.txt";
+    string filepath = argc == 2 ? argv[1] : "../../inputs/day1.txt";
 
     vector<string> lines = getStringInput(filepath);
     vector<int> left, right;

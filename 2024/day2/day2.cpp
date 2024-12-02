@@ -14,30 +14,6 @@ bool checkIsIncreasing(vector<int> tokens) {
     return tokens[0] < (sum / (tokens.size()-1));
 }
 
-int part1(vector<string> input) {
-    int safeCount = 0;
-
-    for (string line: input) {
-        vector<int> tokens = stringVecToIntVec(tokenizer(line));
-        int previous = -1;
-        bool isIncreasing = checkIsIncreasing(tokens);
-
-        for (int current: tokens) {
-            int diff = abs(previous - current);
-            if (previous == -1) {
-                previous = current;
-            } else if (1 <= diff && diff <= 3 && isIncreasing == previous < current) {
-                previous = current;
-            } else {
-                previous = -1;
-                break;
-            }
-        }
-        if (previous != -1) safeCount++;
-    }
-    return safeCount;
-}
-
 
 bool isAscending(vector<int> tokens, bool reverse = false) {
     for (int i = 0; i < tokens.size()-1; i++) {
@@ -60,6 +36,22 @@ bool isSafe(vector<int> tokens) {
         }
     }
     return true;
+}
+
+
+int part1(vector<string> input) {
+    int safeCount = 0;
+
+    for (string line: input) {
+        vector<int> tokens = stringVecToIntVec(tokenizer(line));
+        int previous = -1;
+        bool isIncreasing = checkIsIncreasing(tokens);
+
+        if ((isAscending(tokens) || isAscending(tokens, true)) && isSafe(tokens)) {
+            safeCount++;
+        }
+    }
+    return safeCount;
 }
 
 
@@ -94,8 +86,7 @@ int part2(vector<string> input) {
 
 
 int main(int argc, char *argv[]) {
-    string filepath = "../../inputs/day2.txt";
-    filepath = argc == 2 ? argv[1] : "./inputs/test.txt";
+    string filepath = argc == 2 ? argv[1] : "../../inputs/day2.txt";
 
     vector<string> input = getStringInput(filepath);
 
