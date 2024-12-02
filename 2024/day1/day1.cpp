@@ -45,9 +45,12 @@ int part2(vector<int> left, vector<int> right) {
 
 }
 
-int main() {
+int main(int argc, char *argv[]) {
 
-    vector<string> lines = getStringInput("../../inputs/day1.txt");
+    string filepath = "../../inputs/day1.txt";
+    filepath = argc == 2 ? argv[1] : "./inputs/test.txt";
+
+    vector<string> lines = getStringInput(filepath);
     vector<int> left, right;
 
     // Break the lines to two lists

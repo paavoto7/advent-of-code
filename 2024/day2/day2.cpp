@@ -93,8 +93,11 @@ int part2(vector<string> input) {
 }
 
 
-int main() {
-    vector<string> input = getStringInput("../../inputs/day2.txt");
+int main(int argc, char *argv[]) {
+    string filepath = "../../inputs/day2.txt";
+    filepath = argc == 2 ? argv[1] : "./inputs/test.txt";
+
+    vector<string> input = getStringInput(filepath);
 
     cout << "Part 1: " << part1(input) << endl;
     cout << "Part 2: " << part2(input) << endl;
