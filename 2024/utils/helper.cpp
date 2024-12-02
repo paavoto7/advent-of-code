@@ -38,6 +38,24 @@ std::vector<std::string> tokenizer(const std::string & original, char delimiter)
     return tokens;
 }
 
+std::vector<int> stringVecToIntVec(std::vector<std::string> original) {
+    std::vector<int> newVect;
+
+    for(std::string element: original) {
+        newVect.push_back(std::stoi(element));
+    }
+    return newVect;
+}
+
+std::vector<int> stringToIntVec(std::string original) {
+    std::vector<int> newVect;
+
+    for(int i = 0; i < original.length(); ++i) {
+        newVect.push_back((int) (original[i] - '0')); // Converts the char int to int
+    }
+    return newVect;
+}
+
 /* Simply calculates the dot product of two vectors */
 int dotProduct(std::vector<int> vector1, std::vector<int> vector2) {
 
