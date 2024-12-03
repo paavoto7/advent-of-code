@@ -21,6 +21,21 @@ std::vector<std::string> getStringInput(std::string fileLocation) {
     return output;
 }
 
+std::string getOneString(std::string fileLocation) {
+    std::ifstream Input(fileLocation);
+
+    std::string line;
+    std::stringstream ss;
+
+    while (getline(Input, line)) {
+        ss << line;
+    }
+
+    Input.close();
+
+    return ss.str();
+}
+
 std::vector<std::string> tokenizer(const std::string & original, char delimiter) {
     std::stringstream ss(original);
     std::vector<std::string> tokens;
