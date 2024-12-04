@@ -36,6 +36,15 @@ std::string getOneString(std::string fileLocation) {
     return ss.str();
 }
 
+std::vector<std::vector<char>> convertTo2DChars(std::vector<std::string> inp) {
+    std::vector<std::vector<char>> grid;
+    for (int i = 0; i < inp.size(); ++i) {
+        std::vector<char> line(inp[i].begin(), inp[i].end());
+        grid.push_back(line);
+    }
+    return grid;
+}
+
 std::vector<std::string> tokenizer(const std::string & original, char delimiter) {
     std::stringstream ss(original);
     std::vector<std::string> tokens;

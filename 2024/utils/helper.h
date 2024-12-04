@@ -9,6 +9,8 @@ std::vector<std::string> getStringInput(std::string fileLocation);
 
 std::string getOneString(std::string fileLocation);
 
+std::vector<std::vector<char>> convertTo2DChars(std::vector<std::string> inp);
+
 std::vector<std::string> tokenizer(const std::string & original, char delimiter = ' ');
 
 std::vector<int> stringVecToIntVec(std::vector<std::string> original);
