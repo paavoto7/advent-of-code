@@ -80,6 +80,24 @@ std::vector<int> stringToIntVec(std::string original) {
     return newVect;
 }
 
+
+std::vector<std::vector<int>> stringVecTo2DIntVec(const std::vector<std::string> &original, char delimiter) {
+    std::vector<std::vector<int>> newVect;
+    for (std::string line: original) {
+        std::stringstream ss(line);
+        std::vector<int> intvect;
+        std::string temp;
+        while (std::getline(ss, temp, ',')) {
+            intvect.push_back(stoi(temp));
+        }
+        if (intvect.size() > 0) {
+            newVect.push_back(intvect);
+        }
+    }
+    return newVect;
+}
+
+
 /* Simply calculates the dot product of two vectors */
 int dotProduct(std::vector<int> vector1, std::vector<int> vector2) {
 
