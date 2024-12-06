@@ -41,7 +41,7 @@ fi
 
 if [ -z "$2" ]
 then
-    ./output/day$1.o "../inputs/day$1.txt"
+    ./output/day$1.o "./inputs/day$1.txt"
 else
-    ./output/day$1.o "../inputs/test.txt"
+    ./output/day$1.o "./inputs/test.txt"
 fi

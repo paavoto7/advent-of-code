@@ -1,4 +1,4 @@
-/inputs
+inputs
 *.o
 /.vscode
-2024/output
+output
