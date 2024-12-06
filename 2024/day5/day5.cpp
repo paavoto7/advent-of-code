@@ -27,10 +27,19 @@ unordered_map<int, unordered_set<int>> loadRules(const vector<string> &input) {
     
 }
 
-/* This was surprisingly neat solution for today.
-   Simply checks for part 1 whether the updates are sorted
+/* This was a surprisingly neat solution for today.
+   It simply checks for part 1 whether the updates are sorted
    based on the rules. For part 2 the only addition is to
-   then sort the ones that are incorrect.
+   sort the ones that are incorrect.
+
+   This approach should not work as the ruleset is non-transitive.
+   However, the actual updates were structured in a way that this
+   did not cause any problems.
+
+   Initially I solved part 1 differently. When my part 2
+   solution was starting to get too expensive for my liking,
+   I scrapped it. I looked at the input structure and decided to give
+   sorting a go based on a that. Luckily it worked for the sake of execution time.
 */
 int part12(const vector<string> &input, bool part2) {
     unordered_map<int, unordered_set<int>> rules = loadRules(input);
