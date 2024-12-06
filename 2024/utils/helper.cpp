@@ -36,7 +36,7 @@ std::string getOneString(std::string fileLocation) {
     return ss.str();
 }
 
-std::vector<std::vector<char>> convertTo2DChars(std::vector<std::string> inp) {
+std::vector<std::vector<char>> convertTo2DChars(const std::vector<std::string> &inp) {
     std::vector<std::vector<char>> grid;
     for (int i = 0; i < inp.size(); ++i) {
         std::vector<char> line(inp[i].begin(), inp[i].end());
@@ -99,7 +99,7 @@ std::vector<std::vector<int>> stringVecTo2DIntVec(const std::vector<std::string>
 
 
 /* Simply calculates the dot product of two vectors */
-int dotProduct(std::vector<int> vector1, std::vector<int> vector2) {
+int dotProduct(const std::vector<int> &vector1, const std::vector<int> &vector2) {
 
     if (vector1.size() != vector2.size()) {
         throw std::invalid_argument("Vectors are not the same length");
