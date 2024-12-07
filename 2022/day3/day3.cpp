@@ -1,6 +1,5 @@
 #include <string>
 #include <vector>
-#include <unordered_map>
 #include <iostream>
 #include <chrono>
 #include "../../2024/utils/helper.h"
@@ -42,12 +41,13 @@ int part2(const vector<string>& input) {
         const string& second = input[i+1];
         const string& third = input[i+2];
 
-        for (char c: input[i]) {
+        for (char c: first) {
             if (second.find(c) != string::npos && third.find(c) != string::npos) {
+                // The two magic numbers below are due to the ranges starting at 1
                 if (islower(c)) {
                     sum += c - 'a' + 1;
                 } else {
-                    sum += c - 38;
+                    sum += 'z'-'a' + (c - 'A') + 2;
                 }
                 break;
             }
