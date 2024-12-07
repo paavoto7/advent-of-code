@@ -62,6 +62,23 @@ std::vector<std::string> tokenizer(const std::string & original, char delimiter)
     return tokens;
 }
 
+std::vector<int> tokenizerToInt(const std::string& original, char delimiter) {
+    std::stringstream ss(original);
+    std::vector<int> tokens;
+    
+    std::string token;
+
+    while (getline(ss, token, delimiter)) {
+        // Makes sure no whitespace is added
+        if (token.find_first_not_of(' ') != std::string::npos) {
+            tokens.push_back(stoi(token));
+        }
+        
+    }
+
+    return tokens;
+}
+
 std::vector<int> stringVecToIntVec(std::vector<std::string> original) {
     std::vector<int> newVect;
 

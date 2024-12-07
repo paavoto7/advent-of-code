@@ -14,6 +14,8 @@ std::vector<std::vector<char>> convertTo2DChars(const std::vector<std::string> &
 
 std::vector<std::string> tokenizer(const std::string & original, char delimiter = ' ');
 
+std::vector<int> tokenizerToInt(const std::string& original, char delimiter);
+
 std::vector<int> stringVecToIntVec(std::vector<std::string> original);
 
 std::vector<int> stringToIntVec(std::string original);
