@@ -15,4 +15,13 @@ void print2DGrid(const std::vector<std::vector<T>> &grid) {
     }
 }
 
+void print2DGrid(const std::vector<std::string> &grid) {
+    for (const auto &line: grid) {
+        for (const auto &c: line) {
+            std::cout << c;
+        }
+        std::cout << std::endl;
+    }
+}
+
 #endif
