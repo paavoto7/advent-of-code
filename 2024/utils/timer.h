@@ -4,13 +4,11 @@
 #define TIMER_H
 
 #include <chrono>
-#include <functional>
 #include <iostream>
 #include <string>
-#include <vector>
 
-template <typename T>
-void timer(std::function<int(std::vector<std::string>)> func, const T& input, std::string text) {
+template <typename T, typename Function>
+void timer(Function func, const T& input, std::string text) {
     auto beforeP = std::chrono::high_resolution_clock::now();
     int result = func(input);
     auto afterP = std::chrono::high_resolution_clock::now();
