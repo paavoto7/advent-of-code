@@ -22,6 +22,15 @@ std::vector<int> stringToIntVec(std::string original);
 
 std::vector<std::vector<int>> stringVecTo2DIntVec(const std::vector<std::string> &original, char delimiter = ' ');
 
+struct HashPairs {
+    template <typename T, typename I>
+    std::size_t operator()(const std::pair<T, I>& p) const {
+        return std::hash<T>{}(p.first) ^ (std::hash<I>{}(p.second) << 1);
+    }
+};
+
+bool isInBounds(int a, int b, int maxY, int maxX);
+
 /* Simply calculates the dot product of two vectors */
 int dotProduct(const std::vector<int> &vector1, const std::vector<int> &vector2);
 

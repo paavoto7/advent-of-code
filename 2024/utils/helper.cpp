@@ -4,6 +4,7 @@
 #include <vector>
 #include <fstream>
 #include <sstream>
+#include <utility>
 
 std::vector<std::string> getStringInput(std::string fileLocation) {
     std::ifstream Input(fileLocation);
@@ -112,6 +113,10 @@ std::vector<std::vector<int>> stringVecTo2DIntVec(const std::vector<std::string>
         }
     }
     return newVect;
+}
+
+bool isInBounds(int a, int b, int maxY, int maxX) {
+    return a >= 0 && b >= 0 && a < maxY && b < maxX;
 }
 
 

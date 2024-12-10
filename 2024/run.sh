@@ -39,8 +39,7 @@ if [ ! -e "./output/helper.o" ]
 then
     g++ "./utils/helper.cpp" "./day$1/day$1.cpp" -o "./output/day$1.o"
 else
-    g++ -c "./day$1/day$1.cpp" -o "./output/day_$1.o"
-    g++ -o "./output/day$1.o" "./output/helper.o" "./output/day_$1.o"
+    g++ "./day$1/day$1.cpp" "./output/helper.o" -o "./output/day$1.o"
 fi
 
 # Checks whether compilation was succesful or not
