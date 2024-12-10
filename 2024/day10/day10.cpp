@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <queue>
 #include <unordered_set>
+#include <array>
 #include <utility>
 #include "../utils/helper.h"
 #include "../utils/timer.h"
@@ -19,6 +20,7 @@ using namespace std;
 */
 int searchPath(const vector<string>& topograph, int i, int j, const char target = '9', bool ignoreVisited = false) {
     int paths = 0;
+    // Could be a 2D vector or vector of pairs but this seems the fastest
     constexpr int dirs[4][2] = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
     const int maxY = topograph.size();
     const int maxX = topograph[0].size();
@@ -38,14 +40,20 @@ int searchPath(const vector<string>& topograph, int i, int j, const char target 
         if (current == target) {
             paths++;
         } else {
-            for (int k = 0; k < 4; ++k) {
-                pair<int, int> next = {node.first + dirs[k][0], node.second + dirs[k][1]};
-                if (isInBounds(next.first, next.second, maxY, maxX) &&
-                    topograph[next.first][next.second] == current+1 &&
-                    (ignoreVisited || !visited.count(next)))
+            // Some optimisations, result is better time but less clean code
+            for (const auto& [y, x]: dirs) {
+                int first = node.first + y;
+                int second = node.second + x;
+
+                if (isInBounds(first, second, maxY, maxX) &&
+                    topograph[first][second] == current+1)
                 {
-                    nodes.push(next);
-                    visited.insert(next);
+                    const pair<int, int> next = {first, second};
+                    if (!ignoreVisited && visited.insert(next).second) {
+                        nodes.push(next);
+                    } else if (ignoreVisited) {
+                        nodes.push(next);
+                    }
                 }
             }
         }

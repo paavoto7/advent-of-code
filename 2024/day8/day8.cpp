@@ -24,10 +24,6 @@ unordered_map<char, vector<pair<int, int>>> signals(const vector<string>& grid) 
 }
 
 
-bool isInBounds(int a, int b, int maxY, int maxX) {
-    return a >= 0 && b >= 0 && a < maxY && b < maxX;
-}
-
 // Time complexity is quite bad but the input is small and this is very fast stil
 int part1(const vector<string>& grid) {
     const unordered_map<char, vector<pair<int, int>>> transmitters = signals(grid);
