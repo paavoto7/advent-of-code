@@ -16,6 +16,8 @@ std::vector<std::string> tokenizer(const std::string & original, char delimiter 
 
 std::vector<int> tokenizerToInt(const std::string& original, char delimiter);
 
+std::vector<long long> tokenizerToLongLong(const std::string& original, char delimiter);
+
 std::vector<int> stringVecToIntVec(std::vector<std::string> original);
 
 std::vector<int> stringToIntVec(std::string original);
