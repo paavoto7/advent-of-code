@@ -130,8 +130,8 @@ std::vector<std::vector<int>> stringVecTo2DIntVec(const std::vector<std::string>
     return newVect;
 }
 
-bool isInBounds(int a, int b, int maxY, int maxX) {
-    return a >= 0 && b >= 0 && a < maxY && b < maxX;
+bool isInBounds(int y, int x, int maxY, int maxX) {
+    return y >= 0 && x >= 0 && y < maxY && x < maxX;
 }
 
 
