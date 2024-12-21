@@ -112,7 +112,7 @@ int part1(const vector<string>& input) {
 
                 if (isInBounds(newY, newX, maxY, maxX) &&
                     input[newY][newX] != '#' &&
-                    distance-distances.at({newY, newX}) > 100)
+                    distances.at({newY, newX}) - distance > 100)
                 {
                     cheats++;
                 }
@@ -158,10 +158,8 @@ int part2(const vector<string>& input) {
             const int distance = distances.at(node);
 
             for (int k = -shortcutLen; k <= shortcutLen; ++k) {
-                int inner = k + shortcutLen;
+                int inner = shortcutLen - abs(k);
                 for (int n = -inner; n <= inner; ++n) {
-                    if (abs(k) + abs(n) > shortcutLen) continue;
-                    
                     const int newY = node.y + n;
                     const int newX = node.x + k;
 
@@ -169,7 +167,7 @@ int part2(const vector<string>& input) {
                         input[newY][newX] != '#')
                     {
                         const Coordinate newCoord{newY, newX};
-                        if (distance - distances.at(newCoord) - manhattan(newCoord, node) >= 100) {
+                        if (distances.at(newCoord) - distance - manhattan(newCoord, node) >= 100) {
                             cheats++;
                         }
                     }
