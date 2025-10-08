@@ -2,3 +2,4 @@ inputs
 *.o
 /.vscode
 output
+.vs/
