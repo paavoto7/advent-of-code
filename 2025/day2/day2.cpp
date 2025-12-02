@@ -8,24 +8,28 @@
 using namespace std;
 using namespace utils;
 
+/*
+This first part uses my length finder and number splitting
+functions from last year. It could be done easily with substrings,
+but this seems to on my machine at least achieve better running time.
+The lengthFinder and splitNum are in the utils now.
+*/
 long long part1(const vector<string>& input) {
     
     vector<vector<string>> ranges;
 
-    for (auto row : tokenizer(input[0], ',')) {
+    for (auto& row : tokenizer(input[0], ',')) {
         ranges.push_back(tokenizer(row, '-'));
     }
 
     long long invIdSum = 0;
     
-    for (auto range : ranges) {
-        long long start = stoll(range[0]);
-        long long end = stoll(range[1]);
+    for (auto& range : ranges) {
+        const auto start = stoll(range[0]);
+        const auto end = stoll(range[1]);
         
-        for (long long i = start; i <= end; i++) {
-            if (lengthFinder(i) % 2 != 0) {
-                continue;
-            }
+        for (auto i = start; i <= end; i++) {
+            if (lengthFinder(i) % 2 != 0) continue;
             
             auto splits = splitNum(i);
 
@@ -41,42 +45,58 @@ long long part1(const vector<string>& input) {
     return invIdSum;
 }
 
-// Added just for reference, doing later
+// Helper function for second part so it is easier to read
+bool isInvalid(const string& id, int n) {
+    const int width = id.length() / n;
+
+    // Loop over the n wide segment
+    for (int i = 0; i < width; ++i) {
+        char first = id[i];
+
+        // Check if the letter/number is same in each n segments
+        for (int j = 1; j < n; ++j) {
+            if (id[width * j + i] != first) return false;
+        }
+    }
+
+    return true;
+}
+
+/*
+I couln't reuse my first part logic really, so this is a bit more complicated.
+Different from part 1, it just converts the ranges to strings. This is done
+in order to compare with > 2 wide segments.
+
+The running time of this is approximately 3 times higher than the first part.
+But had I used substr in the first part, the running time would have been roughly the same.
+*/
 long long part2(const vector<string>& input) {
     
     vector<vector<string>> ranges;
-
-    for (auto row : tokenizer(input[0], ',')) {
+    // Not beautiful, but has little to no effect on running time
+    for (auto& row : tokenizer(input[0], ',')) {
         ranges.push_back(tokenizer(row, '-'));
     }
 
     long long invIdSum = 0;
     
-    for (auto range : ranges) {
-        long long start = stoll(range[0]);
-        long long end = stoll(range[1]);
-        //if (start % 2 != 0 ) start--;
-        for (long long i = start; i <= end; i++) {
-            if (lengthFinder(i) % 2 != 0) continue;
-            
-            string x = to_string(i);
+    for (auto& range : ranges) {
+        const auto start = stoll(range[0]);
+        const auto end = stoll(range[1]);
+        
+        for (auto i = start; i <= end; i++) {
+            auto id = to_string(i);
+            const int n = id.length();
 
-            if (x.substr(0, x.length() / 2).compare(x.substr(x.length() / 2)) == 0) {
-                invIdSum += i;
-                
-            } 
-            continue;
-            
-            auto splits = splitNum(i);
+            // Loop over the sequences
+            for (int k = 2; k <= n; ++k) {
+                if (n % k != 0) continue;
 
-            if (splits.first == splits.second) {
-                //cout << i << endl;
-                //cout << splits.first << " " << splits.second << endl;
-                invIdSum += i;
-                // Small trick to improve running time
-                i += splits.first;
+                if (isInvalid(id, k)) {
+                    invIdSum += i;
+                    break;
+                }
             }
-            
         }
     }
     
