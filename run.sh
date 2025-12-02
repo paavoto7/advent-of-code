@@ -7,9 +7,9 @@
 # Run using ./run.sh YEAR DAY_NUMBER [WHATEVER_TO_USE_TEST]
 # Needs to have execute permission => chmod u+x run.sh
 
-if [ "$2" = "clean" ]
+if [ "$3" = "clean" ]
 then
-    rm ./output/day*
+    rm ./$1/output/day*
     exit 0
 fi
 

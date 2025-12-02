@@ -37,6 +37,15 @@ bool isInBounds(int y, int x, int maxY, int maxX);
 
 /* Simply calculates the dot product of two vectors */
 int dotProduct(const std::vector<int> &vector1, const std::vector<int> &vector2);
+
+struct dividedPair {
+    long long first;
+    long long second;
+};
+
+dividedPair splitNum(long long a);
+
+int lengthFinder(long long n);
 }
 
 #endif

@@ -154,4 +154,18 @@ int dotProduct(const std::vector<int> &vector1, const std::vector<int> &vector2)
     
     return sum;
 }
+
+dividedPair splitNum(long long a) {
+    long long divider = 10;
+    while (a / divider >= divider) {
+        divider *= 10;
+    }
+    return {a / divider, a % divider};
+}
+
+int lengthFinder(long long n) {
+    int len = 1;
+    while (n /= 10LL) ++len;
+    return len;
+}
 }
