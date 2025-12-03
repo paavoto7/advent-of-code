@@ -4,9 +4,11 @@
 #include <iostream>
 #include <chrono>
 #include <functional>
-#include "../../2024/utils/helper.h"
-#include "../../2024/utils/gridPrinter.h"
+#include "../../utils/helper.h"
+#include "../../utils/timer.h"
+
 using namespace std;
+using namespace utils;
 
 
 // This is very inefficient, but convenient enough to justify using it
@@ -90,15 +92,6 @@ int main(int argc, char *argv[]) {
     // Putting the parsing here and not recording here is a beat cheating...
     vector<pair<int, int>> pairs = convert(input);
 
-    auto beforeP1 = chrono::high_resolution_clock::now();
-    int result1 = part1(pairs);
-    auto afterP1 = chrono::high_resolution_clock::now();
-    auto time1 = chrono::duration_cast<chrono::microseconds>(afterP1 - beforeP1).count();
-    cout << "Part 1: " << result1 << " - Time: " << time1 / 1000.0 << "ms" << endl;;
-
-    auto beforeP2 = chrono::high_resolution_clock::now();
-    int result2 = part2(pairs);
-    auto afterP2 = chrono::high_resolution_clock::now();
-    auto time2 = chrono::duration_cast<chrono::microseconds>(afterP2 - beforeP2).count();
-    cout << "Part 2: " << result2 << " - Time: " << time2 / 1000.0 << "ms" << endl;
+    timer(part1, pairs, "Part 1: ");
+    timer(part2, pairs, "Part 2: ");
 }
