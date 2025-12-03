@@ -1,6 +1,5 @@
 #include <vector>
 #include <string>
-#include <cmath>
 #include "../../utils/helper.h"
 #include "../../utils/timer.h"
 
@@ -83,15 +82,14 @@ long long part2(const vector<string>& input) {
         int left = 0;
         int right = left + window;
 
-        for (int i = batteries; i >= 0; --i) {
+        for (int i = batteries; i > 0; --i) {
             auto largest = findLargest(bank, left, right);
             
             // Move the sliding window pointers forward
             right++;
             left = largest.ind + 1;
-            
-            // Raising to power gives the correct magnitude for the value
-            jolt += (largest.val - '0') * pow(10, i - 1);
+
+            jolt = jolt * 10 + (largest.val - '0');
         }
 
         joltage += jolt;
