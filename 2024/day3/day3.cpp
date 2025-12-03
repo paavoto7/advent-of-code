@@ -3,9 +3,11 @@
 #include <iostream>
 #include <chrono>
 #include <regex>
-#include "../utils/helper.h"
-using namespace std;
+#include "../../utils/helper.h"
+#include "../../utils/timer.h"
 
+using namespace std;
+using namespace utils;
 
 int regCalc(regex reg, string input) {
     
@@ -63,15 +65,6 @@ int main(int argc, char *argv[]) {
 
     string input = getOneString(filepath);
 
-    auto beforeP1 = chrono::high_resolution_clock::now();
-    int result1 = part1(input);
-    auto afterP1 = chrono::high_resolution_clock::now();
-    auto time1 = chrono::duration_cast<chrono::microseconds>(afterP1 - beforeP1).count();
-    cout << "Part 1: " << result1 << " - Time: " << time1 / 1000.0 << "ms" << endl;;
-
-    auto beforeP2 = chrono::high_resolution_clock::now();
-    int result2 = part2(input);
-    auto afterP2 = chrono::high_resolution_clock::now();
-    auto time2 = chrono::duration_cast<chrono::microseconds>(afterP2 - beforeP2).count();
-    cout << "Part 2: " << result2 << " - Time: " << time2 / 1000.0 << "ms" << endl;
+    timer(part1, input, "Part 1: ");
+    timer(part2, input, "Part 2: ");
 }

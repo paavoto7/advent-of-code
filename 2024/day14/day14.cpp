@@ -4,10 +4,12 @@
 #include <utility>
 #include <cmath>
 #include <unordered_map>
-#include "../utils/helper.h"
-#include "../utils/timer.h"
-#include "../utils/gridPrinter.h"
+#include "../../utils/helper.h"
+#include "../../utils/timer.h"
+#include "../../utils/gridPrinter.h"
+
 using namespace std;
+using namespace utils;
 
 
 constexpr int x = 101, y = 103;

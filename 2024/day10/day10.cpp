@@ -6,9 +6,11 @@
 #include <unordered_set>
 #include <array>
 #include <utility>
-#include "../utils/helper.h"
-#include "../utils/timer.h"
+#include "../../utils/helper.h"
+#include "../../utils/timer.h"
+
 using namespace std;
+using namespace utils;
 
 
 /* A pretty standard BFS that finds all valid paths.

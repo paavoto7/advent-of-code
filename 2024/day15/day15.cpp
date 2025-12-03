@@ -3,10 +3,12 @@
 #include <vector>
 #include <utility>
 #include <unordered_map>
-#include "../utils/helper.h"
-#include "../utils/timer.h"
-#include "../utils/gridPrinter.h"
+#include "../../utils/helper.h"
+#include "../../utils/timer.h"
+#include "../../utils/gridPrinter.h"
+
 using namespace std;
+using namespace utils;
 
 
 bool moveBoxes(vector<string>& warehouse, int x, int y, const pair<int, int>& dir) {

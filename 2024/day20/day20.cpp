@@ -6,10 +6,12 @@
 #include <utility>
 #include <unordered_map>
 #include <cmath>
-#include "../utils/helper.h"
-#include "../utils/timer.h"
-#include "../utils/gridPrinter.h"
+#include "../../utils/helper.h"
+#include "../../utils/timer.h"
+#include "../../utils/gridPrinter.h"
+
 using namespace std;
+using namespace utils;
 
 struct Coordinate {
     int y;

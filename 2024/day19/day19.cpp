@@ -1,9 +1,11 @@
 #include <string>
 #include <iostream>
 #include <vector>
-#include "../utils/helper.h"
-#include "../utils/timer.h"
+#include "../../utils/helper.h"
+#include "../../utils/timer.h"
+
 using namespace std;
+using namespace utils;
 
 
 bool isDesing(const vector<string>& towels, const string& design) {

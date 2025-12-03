@@ -5,10 +5,12 @@
 #include <unordered_set>
 #include <set>
 #include <sstream>
-#include "../utils/helper.h"
-#include "../utils/timer.h"
-#include "../utils/gridPrinter.h"
+#include "../../utils/helper.h"
+#include "../../utils/timer.h"
+#include "../../utils/gridPrinter.h"
+
 using namespace std;
+using namespace utils;
 
 
 int hashConns(string a, string b, string c) {

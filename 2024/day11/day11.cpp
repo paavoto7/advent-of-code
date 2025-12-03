@@ -2,39 +2,16 @@
 #include <iostream>
 #include <vector>
 #include <unordered_map>
-#include "../utils/helper.h"
-#include "../utils/timer.h"
+#include "../../utils/helper.h"
+#include "../../utils/timer.h"
+#include "../../utils/gridPrinter.h"
+
 using namespace std;
+using namespace utils;
 
-
-struct dividedPair {
-    long long first;
-    long long second;
-};
-
-dividedPair splitNum(const long long& a) {
-    long long divider = 10;
-    while (a / divider >= divider) {
-        divider *= 10;
-    }
-    return dividedPair{a / divider, a % divider};
-}
-
-
-int lengthFinder(long long n) {
-    int len = 1;
-    while (n /= 10LL) ++len;
-    return len;
-}
-
-
-void blinker(unordered_map<long long, long long>& stones) {
-
-    const auto original = stones;    
+void blinker(unordered_map<long long, long long>& stones, unordered_map<long long, long long>& prevStones) {
     
-    for (const auto& [stone, amount]: original) {
-        if (amount < 1) continue;
-        stones[stone] -= amount;
+    for (const auto& [stone, amount]: prevStones) {
         if (stone == 0) {
             stones[1] += amount;
         } else if (lengthFinder(stone) % 2 == 0) {
@@ -45,6 +22,8 @@ void blinker(unordered_map<long long, long long>& stones) {
             stones[stone*2024] += amount;
         }
     }
+    swap(prevStones, stones);
+    stones.clear();
 }
 
 
@@ -52,15 +31,16 @@ int part1(const string& input) {
     int sum = 0;
 
     unordered_map<long long, long long> stoneTimes;
+    unordered_map<long long, long long> prevStones;
     for (auto stone: tokenizerToLongLong(input, ' ')) {
-        stoneTimes[stone]++;
+        prevStones[stone]++;
     }
 
     for (int i = 0; i < 25; ++i){
-        blinker(stoneTimes);
+        blinker(stoneTimes, prevStones);
     }
 
-    for (const auto& [stone, amount]: stoneTimes) {    
+    for (const auto& [stone, amount]: prevStones) {    
         sum += amount;
     }
 
@@ -72,15 +52,16 @@ long long part2(const string& input) {
     long long sum = 0;
 
     unordered_map<long long, long long> stoneTimes;
+    unordered_map<long long, long long> prevStones;
     for (auto stone: tokenizerToLongLong(input, ' ')) {
-        stoneTimes[stone]++;
+        prevStones[stone]++;
     }
 
     for (int i = 0; i < 75; ++i){
-        blinker(stoneTimes);
+        blinker(stoneTimes, prevStones);
     }
     
-    for (const auto& [stone, amount]: stoneTimes) {    
+    for (const auto& [stone, amount]: prevStones) {    
         sum += amount;
     }
 

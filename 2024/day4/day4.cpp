@@ -2,9 +2,12 @@
 #include <vector>
 #include <array>
 #include <iostream>
-#include <chrono>
-#include "../utils/helper.h"
+
+#include "../../utils/helper.h"
+#include "../../utils/timer.h"
+
 using namespace std;
+using namespace utils;
 
 
 int search(const vector<vector<char>> &grid, int posY, int posX, const array<int, 2> &dir, const string &word = "XMAS") {
@@ -92,15 +95,6 @@ int main(int argc, char *argv[]) {
     vector<string> input = getStringInput(filepath);
     vector<vector<char>> grid = convertTo2DChars(input);
 
-    auto beforeP1 = chrono::high_resolution_clock::now();
-    int result1 = part1(grid);
-    auto afterP1 = chrono::high_resolution_clock::now();
-    auto time1 = chrono::duration_cast<chrono::microseconds>(afterP1 - beforeP1).count();
-    cout << "Part 1: " << result1 << " - Time: " << time1 / 1000.0 << "ms" << endl;;
-
-    auto beforeP2 = chrono::high_resolution_clock::now();
-    int result2 = part2(grid);
-    auto afterP2 = chrono::high_resolution_clock::now();
-    auto time2 = chrono::duration_cast<chrono::microseconds>(afterP2 - beforeP2).count();
-    cout << "Part 2: " << result2 << " - Time: " << time2 / 1000.0 << "ms" << endl;
+    timer(part1, grid, "Part 1: ");
+    timer(part2, grid, "Part 2: ");
 }

@@ -2,10 +2,12 @@
 #include <iostream>
 #include <vector>
 #include <array>
-#include "../utils/helper.h"
-#include "../utils/timer.h"
-#include "../utils/gridPrinter.h"
+#include "../../utils/helper.h"
+#include "../../utils/timer.h"
+#include "../../utils/gridPrinter.h"
+
 using namespace std;
+using namespace utils;
 
 
 int part1(const vector<string>& input) {

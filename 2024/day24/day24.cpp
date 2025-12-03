@@ -6,10 +6,12 @@
 #include <algorithm>
 #include <cstdint>
 #include <queue>
-#include "../utils/helper.h"
-#include "../utils/timer.h"
-#include "../utils/gridPrinter.h"
+#include "../../utils/helper.h"
+#include "../../utils/timer.h"
+#include "../../utils/gridPrinter.h"
+
 using namespace std;
+using namespace utils;
 
 
 struct Gate {

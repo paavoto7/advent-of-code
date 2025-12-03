@@ -5,9 +5,11 @@
 #include <sstream>
 #include <array>
 #include <cstdint>
-#include "../utils/helper.h"
-#include "../utils/timer.h"
+#include "../../utils/helper.h"
+#include "../../utils/timer.h"
+
 using namespace std;
+using namespace utils;
 
 
 int combos(const array<int, 3>& registers, int operand) {

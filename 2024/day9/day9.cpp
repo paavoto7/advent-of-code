@@ -3,9 +3,11 @@
 #include <vector>
 #include <algorithm>
 #include <unordered_map>
-#include "../utils/helper.h"
-#include "../utils/timer.h"
+#include "../../utils/helper.h"
+#include "../../utils/timer.h"
+
 using namespace std;
+using namespace utils;
 
 
 long part1(const string& diskMap) {

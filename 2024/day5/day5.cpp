@@ -4,9 +4,12 @@
 #include <unordered_set>
 #include <iostream>
 #include <algorithm>
-#include <chrono>
-#include "../utils/helper.h"
+
+#include "../../utils/helper.h"
+#include "../../utils/timer.h"
+
 using namespace std;
+using namespace utils;
 
 
 /* Get the rules into a map
@@ -88,15 +91,6 @@ int main(int argc, char *argv[]) {
     // Pass the already parsed input for both
     vector<string> input = getStringInput(filepath);
 
-    auto beforeP1 = chrono::high_resolution_clock::now();
-    int result1 = part1(input);
-    auto afterP1 = chrono::high_resolution_clock::now();
-    auto time1 = chrono::duration_cast<chrono::microseconds>(afterP1 - beforeP1).count();
-    cout << "Part 1: " << result1 << " - Time: " << time1 / 1000.0 << "ms" << endl;;
-
-    auto beforeP2 = chrono::high_resolution_clock::now();
-    int result2 = part2(input);
-    auto afterP2 = chrono::high_resolution_clock::now();
-    auto time2 = chrono::duration_cast<chrono::microseconds>(afterP2 - beforeP2).count();
-    cout << "Part 2: " << result2 << " - Time: " << time2 / 1000.0 << "ms" << endl;
+    timer(part1, input, "Part 1: ");
+    timer(part2, input, "Part 2: ");
 }

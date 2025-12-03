@@ -5,10 +5,11 @@
 #include <unordered_map>
 #include <utility>
 #include <algorithm>
-#include "../utils/helper.h"
-#include "../utils/timer.h"
-#include "../utils/gridPrinter.h"
+#include "../../utils/helper.h"
+#include "../../utils/timer.h"
+
 using namespace std;
+using namespace utils;
 
 
 int searchArea(const vector<string>& graph, vector<vector<bool>>& visited, int i, int j) {

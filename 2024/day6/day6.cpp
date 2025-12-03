@@ -3,11 +3,12 @@
 #include <iostream>
 #include <algorithm>
 #include <vector>
-#include <chrono>
 #include <utility>
-#include "../utils/helper.h"
-#include "../utils/gridPrinter.h"
+#include "../../utils/helper.h"
+#include "../../utils/timer.h"
+
 using namespace std;
+using namespace utils;
 
 /* Today I didn't create a shared function or variables.
    Could come back and do that but this solution even for
@@ -26,7 +27,9 @@ pair<int, int> findGuard(const vector<string> &input, char guard) {
 }
 
 
-int part1(vector<string> grid, int currx, int curry) {
+int part1(vector<string> grid) {
+    auto [currx, curry] = findGuard(grid, '^');
+
     int sum = 0;
     
     int width = grid[0].size();
@@ -70,7 +73,9 @@ int part1(vector<string> grid, int currx, int curry) {
    on the path taken in part 1. This solution runs under
    a second so I decided to leave it this way for now.
 */
-int part2(vector<string> grid, int currx, int curry) {
+int part2(vector<string> grid) {
+    auto [currx, curry] = findGuard(grid, '^');
+    
     int loops = 0;
 
     int width = grid[0].size();
@@ -131,17 +136,8 @@ int main(int argc, char *argv[]) {
 
     // Pass the already parsed input for both
     vector<string> input = getStringInput(filepath);
-    auto [currx, curry] = findGuard(input, '^');
+    
 
-    auto beforeP1 = chrono::high_resolution_clock::now();
-    int result1 = part1(input, currx, curry);
-    auto afterP1 = chrono::high_resolution_clock::now();
-    auto time1 = chrono::duration_cast<chrono::microseconds>(afterP1 - beforeP1).count();
-    cout << "Part 1: " << result1 << " - Time: " << time1 / 1000.0 << "ms" << endl;;
-
-    auto beforeP2 = chrono::high_resolution_clock::now();
-    int result2 = part2(input, currx, curry);
-    auto afterP2 = chrono::high_resolution_clock::now();
-    auto time2 = chrono::duration_cast<chrono::microseconds>(afterP2 - beforeP2).count();
-    cout << "Part 2: " << result2 << " - Time: " << time2 / 1000.0 << "ms" << endl;
+    timer(part1, input, "Part 1: ");
+    timer(part2, input, "Part 2: ");
 }

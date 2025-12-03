@@ -3,8 +3,9 @@
 #include <vector>
 #include <algorithm>
 #include <map>
-#include "../utils/helper.h"
+#include "../../utils/helper.h"
 using namespace std;
+using namespace utils;
 
 int part1(vector<int> left, vector<int> right) {
 
