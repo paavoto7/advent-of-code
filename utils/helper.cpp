@@ -43,7 +43,7 @@ std::string getOneString(std::string fileLocation) {
 
 std::vector<std::vector<char>> convertTo2DChars(const std::vector<std::string> &inp) {
     std::vector<std::vector<char>> grid;
-    for (int i = 0; i < inp.size(); ++i) {
+    for (size_t i = 0; i < inp.size(); ++i) {
         std::vector<char> line(inp[i].begin(), inp[i].end());
         grid.push_back(line);
     }
@@ -111,7 +111,7 @@ std::vector<int> stringVecToIntVec(std::vector<std::string> original) {
 std::vector<int> stringToIntVec(std::string original) {
     std::vector<int> newVect;
 
-    for(int i = 0; i < original.length(); ++i) {
+    for(size_t i = 0; i < original.length(); ++i) {
         newVect.push_back((int) (original[i] - '0')); // Converts the char int to int
     }
     return newVect;
@@ -124,7 +124,7 @@ std::vector<std::vector<int>> stringVecTo2DIntVec(const std::vector<std::string>
         std::stringstream ss(line);
         std::vector<int> intvect;
         std::string temp;
-        while (std::getline(ss, temp, ',')) {
+        while (std::getline(ss, temp, delimiter)) {
             intvect.push_back(stoi(temp));
         }
         if (intvect.size() > 0) {
@@ -148,7 +148,7 @@ int dotProduct(const std::vector<int> &vector1, const std::vector<int> &vector2)
 
     int sum = 0;
 
-    for (int i = 0; i < vector1.size(); ++i) {
+    for (size_t i = 0; i < vector1.size(); ++i) {
         sum += vector1[i]*vector2[i];
     }
     
