@@ -33,7 +33,13 @@ struct HashPairs {
     }
 };
 
-bool isInBounds(int y, int x, int maxY, int maxX);
+inline bool isInBounds(int y, int x, int maxY, int maxX) {
+    return y >= 0 && x >= 0 && y < maxY && x < maxX;
+}
+
+inline bool isInBounds(int y, int x, size_t maxY, size_t maxX) {
+    return y >= 0 && x >= 0 && static_cast<size_t>(y) < maxY && static_cast<size_t>(x) < maxX;
+}
 
 /* Simply calculates the dot product of two vectors */
 int dotProduct(const std::vector<int> &vector1, const std::vector<int> &vector2);

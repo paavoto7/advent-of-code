@@ -134,10 +134,6 @@ std::vector<std::vector<int>> stringVecTo2DIntVec(const std::vector<std::string>
     return newVect;
 }
 
-bool isInBounds(int y, int x, int maxY, int maxX) {
-    return y >= 0 && x >= 0 && y < maxY && x < maxX;
-}
-
 
 /* Simply calculates the dot product of two vectors */
 int dotProduct(const std::vector<int> &vector1, const std::vector<int> &vector2) {
