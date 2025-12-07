@@ -25,7 +25,7 @@ The time complexity for both parts is O(n).
 
 int part1(const vector<string>& input) {
     const size_t height = input.size();
-    const size_t width = input[0].size() - 1; // Really widthMinusOne
+    const size_t width = input[0].size();
     
     vector<bool> beams(width, false);
     beams[width / 2] = true;
@@ -33,7 +33,7 @@ int part1(const vector<string>& input) {
     int splits = 0;
     for (size_t i = 1; i < height; ++i) {
         auto& row = input[i];
-        for (size_t j = 1; j < width; ++j) {
+        for (size_t j = 1; j < width - 1; ++j) {
             if (row[j] == '.' || !beams[j]) continue;
 
             beams[j] = false;
@@ -50,7 +50,7 @@ int part1(const vector<string>& input) {
 long long part2(const vector<string>& input) {
 
     const size_t height = input.size();
-    const size_t width = input[0].size() - 1; 
+    const size_t width = input[0].size(); 
     
     vector<long long> lines(width, 0);
     lines[width / 2] = 1; // Start position
@@ -58,7 +58,7 @@ long long part2(const vector<string>& input) {
     long long splits = 0;
     for (size_t i = 1; i < height; ++i) {
         auto& row = input[i];
-        for (size_t j = 1; j < width; ++j) {
+        for (size_t j = 1; j < width - 1; ++j) {
             if (row[j] == '.') continue;
             // This is not needed for part 2 apparently
             //if (lines[j] == 0) continue;
