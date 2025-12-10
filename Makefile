@@ -1,6 +1,6 @@
 # Usage:
 # 	make run year=2025 day=10
-# 	Current year: make run day=2
+# 	Current year: make run day=02
 # 	Current day: make run
 # 	To use O2: make profile ...
 # 	To use O3: make profileMax ...
@@ -13,7 +13,7 @@ CXX := g++
 CXXFLAGS := -Wall -Wextra -std=c++17
 
 year ?= $(shell date +%Y)
-day ?= $(shell date +%-d)
+day ?= $(shell date +%d)
 
 output := $(year)/output/day$(day)
 src := $(year)/day$(day)/day$(day).cpp

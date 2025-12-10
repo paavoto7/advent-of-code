@@ -26,7 +26,7 @@ then
 fi
 
 # Get the current day and month
-printf -v day "%(%-d)T" -1
+printf -v day "%(%d)T" -1
 printf -v month "%(%-m)T" -1
 
 # If it is december, check that the supplied day is not over the current one
